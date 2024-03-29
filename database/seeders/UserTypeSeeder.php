@@ -13,15 +13,11 @@ class UserTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $user_types = [
-            'professor',
-            'student',
-        ];
-
-        foreach( $user_types as $type ) {
-            UserType::create([
-                'name' => $type,
-            ]);
-        }
+        UserType::create([
+            "name"=> "student",
+        ]);
+        UserType::create([
+            "name"=> "professor",
+        ]);
     }
 }
