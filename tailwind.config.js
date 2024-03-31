@@ -9,11 +9,17 @@ export default {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
     ],
-
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                'primary': '#FFFFFF',    // White
+                'secondary': '#E5E5E5',  // Light Gray
+                'accent': '#FCA311',     // Orange
+                'dark': '#14213D',       // Navy
+                'black': '#000000',      // Black
             },
         },
     },

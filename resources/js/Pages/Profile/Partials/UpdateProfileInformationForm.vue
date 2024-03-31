@@ -15,9 +15,9 @@ defineProps({
 });
 
 const user = usePage().props.auth.user;
-
 const form = useForm({
-    name: user.name,
+    first_name: user.first_name,
+    last_name: user.last_name,
     email: user.email,
 });
 </script>
@@ -33,22 +33,38 @@ const form = useForm({
         </header>
 
         <form @submit.prevent="form.patch(route('profile.update'))" class="mt-6 space-y-6">
-            <div>
-                <InputLabel for="name" value="Name" />
+            <div class="flex w-full">
+                <div class="w-1/2 me-4">
+                    <InputLabel for="first_name" value="First Name" />
 
-                <TextInput
-                    id="name"
-                    type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.name"
-                    required
-                    autofocus
-                    autocomplete="name"
-                />
+                    <TextInput
+                        id="first_name"
+                        type="text"
+                        class="mt-1 block w-full"
+                        v-model="form.first_name"
+                        required
+                        autofocus
+                        autocomplete="first_name"
+                    />
+                    <InputError class="mt-2" :message="form.errors.first_name" />
+                </div>
 
-                <InputError class="mt-2" :message="form.errors.name" />
+                <div class="w-1/2">
+                    <InputLabel for="last_name" value="Last Name" />
+
+                    <TextInput
+                        id="last_name"
+                        type="text"
+                        class="mt-1 block w-full"
+                        v-model="form.last_name"
+                        required
+                        autofocus
+                        autocomplete="last_name"
+                    />
+
+                    <InputError class="mt-2" :message="form.errors.last_name" />
+                </div>
             </div>
-
             <div>
                 <InputLabel for="email" value="Email" />
 
@@ -86,8 +102,7 @@ const form = useForm({
             </div>
 
             <div class="flex items-center gap-4">
-                <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
-
+                <PrimaryButton @click="console.log(form)"  :disabled="form.processing">Save</PrimaryButton>
                 <Transition
                     enter-active-class="transition ease-in-out"
                     enter-from-class="opacity-0"
